@@ -1,13 +1,10 @@
 "use client";
-import { useContext } from "react";
-import { CartSystem } from "../app/layout";
-import Link from "next/link";
-export default function Header() {
-  const { state, dispatch } = useContext(CartSystem);
 
-  const totalItems = state.cart.reduce((total, item) => {
-    return total + item.quantity;
-  }, 0);
+import Link from "next/link";
+import { useSelector } from "react-redux";
+
+export default function Header() {
+  const { loading, cartItems } = useSelector((state) => state.cart);
 
   return (
     <header className="fixed top-0 w-full">
@@ -16,7 +13,9 @@ export default function Header() {
           Shopping Cart
         </Link>
         <div>
-          <span className="cart-badge">{totalItems}</span>
+          <span className="cart-badge">
+            {cartItems.reduce((a, c) => a + c.qty, 0)}
+          </span>
           <Link href="/cart" className="flex justify-between items-end">
             <svg
               fill="#ffffff"

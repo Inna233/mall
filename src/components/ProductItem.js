@@ -1,15 +1,9 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext } from "react";
-import { CartSystem } from "../app/layout";
+import AddToCart from "./AddToCart";
 
 export default function ProductItem({ product }) {
-  const { state, dispatch } = useContext(CartSystem);
-  const addToCart = (product) => {
-    dispatch({ type: "ADD_TO_CART", payload: product });
-  };
-
   return (
     <div className="card">
       <div>
@@ -29,7 +23,12 @@ export default function ProductItem({ product }) {
         </span>
 
         <p>${product.price}</p>
-        <button onClick={() => addToCart(product)}>Add to cart</button>
+        <AddToCart
+          showQty={false}
+          product={product}
+          increasePerClick={true}
+          redirect={false}
+        />
       </div>
     </div>
   );

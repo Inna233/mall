@@ -1,20 +1,25 @@
 "use client";
 
-import { useContext } from "react";
-import { CartSystem } from "../../app/layout";
 import Image from "next/image";
 import Link from "next/link";
+import { addToCart, removeFromCart } from "@/redux/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CartPage() {
-  const { state, dispatch } = useContext(CartSystem);
+  const dispatch = useDispatch();
+  const { loading, cartItems, itemsPrice } = useSelector((state) => state.cart);
 
-  const total = state.cart.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
+
+  const addToCartHandler = async (product, qty) => {
+    dispatch(addToCart({ ...product, qty }));
+  };
 
   return (
     <div>
-      {state.cart.length === 0 ? (
+      {cartItems.length === 0 ? (
         <div>
           Cart is empty. <Link href="/">Go shopping</Link>
         </div>
@@ -30,7 +35,7 @@ export default function CartPage() {
                 </tr>
               </thead>
               <tbody>
-                {state.cart.map((item) => (
+                {cartItems.map((item) => (
                   <tr key={item.id} className="border-b">
                     <td>
                       <div className="flex items-center">
@@ -46,8 +51,16 @@ export default function CartPage() {
                         {item.name}
                       </div>
                     </td>
-                    <td className="p-5 text-right">{item.quantity}</td>
+                    <td className="p-5 text-right">{item.qty}</td>
                     <td className="p-5 text-right">${item.price}</td>
+                    <td className="p-5 text-center">
+                      <button
+                        className="default-button"
+                        onClick={() => removeFromCartHandler(item.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -59,7 +72,7 @@ export default function CartPage() {
                 <li>
                   <div className="pb-3 text-xl">
                     total amount(
-                    {state.cart.reduce((a, c) => a + c.quantity, 0)}): ${total}
+                    {cartItems.reduce((a, c) => a + c.qty, 0)}): ${itemsPrice}
                   </div>
                 </li>
               </ul>
