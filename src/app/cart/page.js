@@ -124,6 +124,11 @@ export default function CartPage() {
                     {cartItems.reduce((a, c) => a + c.qty, 0)}): ${itemsPrice}
                   </div>
                 </li>
+                <li>
+                  <Link href="/placeorder" className="primary-button w-full">
+                    Proceed to checkout
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
