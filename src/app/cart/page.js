@@ -32,6 +32,7 @@ export default function CartPage() {
                   <th className="p-5 text-left">Product</th>
                   <th className="p-5 text-right">Quantity</th>
                   <th className="p-5 text-right">Price</th>
+                  <th className="p-5 text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,7 +52,55 @@ export default function CartPage() {
                         {item.name}
                       </div>
                     </td>
-                    <td className="p-5 text-right">{item.qty}</td>
+                    <td className="p-5 text-right flex justify-end">
+                      <button
+                        onClick={() => {
+                          item.qty <= 1
+                            ? removeFromCartHandler(item.id)
+                            : addToCartHandler(item, Number(item.qty - 1));
+                        }}
+                      >
+                        <svg
+                          t="1701627442823"
+                          class="icon"
+                          viewBox="0 0 1024 1024"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          p-id="2947"
+                          width="12"
+                          height="12"
+                        >
+                          <path
+                            d="M507.904 52.224q95.232 0 179.2 36.352t145.92 98.304 98.304 145.408 36.352 178.688-36.352 179.2-98.304 145.92-145.92 98.304-179.2 36.352-178.688-36.352-145.408-98.304-98.304-145.92-36.352-179.2 36.352-178.688 98.304-145.408 145.408-98.304 178.688-36.352zM736.256 573.44q30.72 0 55.296-15.872t24.576-47.616q0-30.72-24.576-45.568t-55.296-14.848l-452.608 0q-30.72 0-56.32 14.848t-25.6 45.568q0 31.744 25.6 47.616t56.32 15.872l452.608 0z"
+                            fill="#2c2c2c"
+                            p-id="2948"
+                          ></path>
+                        </svg>
+                      </button>
+                      &nbsp;{item.qty}&nbsp;
+                      <button
+                        onClick={() =>
+                          addToCartHandler(item, Number(item.qty + 1))
+                        }
+                      >
+                        <svg
+                          t="1701627524217"
+                          class="icon"
+                          viewBox="0 0 1024 1024"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          p-id="904"
+                          width="12"
+                          height="12"
+                        >
+                          <path
+                            d="M511.3 64.2c-247.1 0-447.4 200.3-447.4 447.4S264.2 959 511.3 959s447.4-200.3 447.4-447.4S758.4 64.2 511.3 64.2z m244.1 488.1H552v203.4c0 22.5-18.2 40.7-40.7 40.7-22.5 0-40.7-18.2-40.7-40.7V552.3H267.3c-22.5 0-40.7-18.2-40.7-40.7 0-22.5 18.2-40.7 40.7-40.7h203.4V267.6c0-22.5 18.2-40.7 40.7-40.7 22.5 0 40.7 18.2 40.7 40.7V471h203.4c22.5 0 40.7 18.2 40.7 40.7-0.1 22.4-18.4 40.6-40.8 40.6z"
+                            fill="#2c2c2c"
+                            p-id="905"
+                          ></path>
+                        </svg>
+                      </button>
+                    </td>
                     <td className="p-5 text-right">${item.price}</td>
                     <td className="p-5 text-center">
                       <button
