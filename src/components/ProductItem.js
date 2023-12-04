@@ -6,7 +6,7 @@ import AddToCart from "./AddToCart";
 export default function ProductItem({ product }) {
   return (
     <div className="card">
-      <div>
+      <Link href={`/product/${product.id}`}>
         {product.photos && (
           <Image
             src={product.photos[0]}
@@ -16,19 +16,14 @@ export default function ProductItem({ product }) {
             className="rounded shadow object-cover h-96 w-full"
           />
         )}
-      </div>
+      </Link>
       <div className="flex flex-col items-center justify-center p-5">
         <span>
           <h2 className="text-lg">{product.name}</h2>
         </span>
 
         <p>${product.price}</p>
-        <AddToCart
-          showQty={false}
-          product={product}
-          increasePerClick={true}
-          redirect={false}
-        />
+        <AddToCart showQty={false} product={product} increasePerClick={true} />
       </div>
     </div>
   );
