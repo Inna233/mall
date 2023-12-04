@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <StoreProvider>
           <Header />
-          <div className="mt-12">{children}</div>
+          <div>{children}</div>
         </StoreProvider>
       </body>
     </html>

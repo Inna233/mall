@@ -7,7 +7,7 @@ export default function Header() {
   const { loading, cartItems } = useSelector((state) => state.cart);
 
   return (
-    <header className="fixed top-0 w-full">
+    <header className="sticky top-0 w-full">
       <nav className="flex justify-between items-center h-12 px-4 shadow-md bg-gray-800 text-white">
         <Link href="/" className="text-lg font-bold">
           Shopping Cart

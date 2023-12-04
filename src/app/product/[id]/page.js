@@ -16,19 +16,18 @@ export default function ProductDetailPage({ params: { id } }) {
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
         <div className="md:col-span-2">
-          {product.photos && (
-            <Image
-              src={product.photos[0]}
-              alt={product.name}
-              width={640}
-              height={640}
-              sizes="100vw"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            ></Image>
-          )}
+          {!product.photos ? <p>图片丢失，此为占位图</p> : <></>}
+          <Image
+            src={product.photos?.[0] || "/placeholder.jpg"}
+            alt={product.name}
+            width={640}
+            height={640}
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+          ></Image>
         </div>
         <div>
           <ul>
