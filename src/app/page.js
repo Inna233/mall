@@ -53,7 +53,7 @@ export default function Home() {
           <ProductItem key={product.id} product={product} />
         ))}
       {isLoading && <p>Loading...</p>}
-      {error && <p>Error: {error.message}</p>}
+      {error && <p>Tips: {error.message}</p>}
       <div ref={observerTarget}></div>
     </div>
   );
