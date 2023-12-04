@@ -3363,3 +3363,7 @@ export const data = {
     },
   ],
 };
+
+export const maxPage = Math.ceil(
+  data.products.length / (process.env.PAGE_SIZE || 20)
+);

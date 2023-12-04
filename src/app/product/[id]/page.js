@@ -1,4 +1,4 @@
-import { data } from "@/utils/data";
+import { data } from "@/utils/test";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "@/components/AddToCart";
@@ -16,17 +16,19 @@ export default function ProductDetailPage({ params: { id } }) {
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
         <div className="md:col-span-2">
-          <Image
-            src={product.photos[0]}
-            alt={product.name}
-            width={640}
-            height={640}
-            sizes="100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
-          ></Image>
+          {product.photos && (
+            <Image
+              src={product.photos[0]}
+              alt={product.name}
+              width={640}
+              height={640}
+              sizes="100vw"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            ></Image>
+          )}
         </div>
         <div>
           <ul>
@@ -44,7 +46,7 @@ export default function ProductDetailPage({ params: { id } }) {
               <VideoPlayer
                 videos={product.videos}
                 controls={true}
-                light={product.photos[0] || true}
+                light={product.photos?.[0] || true}
               />
             </li>
           </ul>

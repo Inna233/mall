@@ -18,10 +18,9 @@ export default function ProductItem({ product }) {
         )}
       </Link>
       <div className="flex flex-col items-center justify-center p-5">
-        <span>
+        <Link href={`/product/${product.id}`}>
           <h2 className="text-lg">{product.name}</h2>
-        </span>
-
+        </Link>
         <p>${product.price}</p>
         <AddToCart showQty={false} product={product} increasePerClick={true} />
       </div>
