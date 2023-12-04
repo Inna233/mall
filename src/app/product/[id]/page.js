@@ -2,6 +2,7 @@ import { data } from "@/utils/data";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCart from "@/components/AddToCart";
+import VideoPlayer from "@/components/VideoPlayer";
 
 export default function ProductDetailPage({ params: { id } }) {
   const product = data.products.find((x) => x.id === id);
@@ -36,6 +37,15 @@ export default function ProductDetailPage({ params: { id } }) {
               <hr className="my-3" />
               Description:
               <p>{product.description}</p>
+            </li>
+            <li>
+              <hr className="my-3" />
+              Instruction video:
+              <VideoPlayer
+                videos={product.videos}
+                controls={true}
+                light={product.photos[0] || true}
+              />
             </li>
           </ul>
         </div>
