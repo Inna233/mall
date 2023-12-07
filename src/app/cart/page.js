@@ -40,15 +40,13 @@ export default function CartPage() {
                   <tr key={item.id} className="border-b">
                     <td>
                       <div className="flex items-center">
-                        {item.photos && (
-                          <Image
-                            src={item.photos[0]}
-                            alt={item.name}
-                            width={50}
-                            height={50}
-                            className="p-1"
-                          ></Image>
-                        )}
+                        <Image
+                          src={item.photos?.[0]}
+                          alt={item.name}
+                          width={50}
+                          height={50}
+                          className="p-1"
+                        ></Image>
                         {item.name}
                       </div>
                     </td>

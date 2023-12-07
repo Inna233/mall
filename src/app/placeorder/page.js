@@ -37,19 +37,17 @@ export default function PlaceOrderScreen() {
                           href={`/product/${item.id}`}
                           className="flex items-center"
                         >
-                          {item.photos && (
-                            <Image
-                              src={item.photos[0]}
-                              alt={item.name}
-                              width={50}
-                              height={50}
-                              style={{
-                                maxWidth: "100%",
-                                height: "auto",
-                              }}
-                              className="p-1"
-                            ></Image>
-                          )}
+                          <Image
+                            src={item.photos?.[0]}
+                            alt={item.name}
+                            width={50}
+                            height={50}
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto",
+                            }}
+                            className="p-1"
+                          ></Image>
                           {item.name}
                         </Link>
                       </td>
